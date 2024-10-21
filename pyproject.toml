@@ -2,7 +2,7 @@
 name = "metar-taf-db-upload"
 version = "0.1.0"
 description = ""
-authors = ["Julian Sotelo <juliansotelo@mail.fresnostate.edu>"]
+authors = ["Julian Sotelo <jasotel1@uci.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
