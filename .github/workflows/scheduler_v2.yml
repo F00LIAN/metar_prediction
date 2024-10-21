@@ -35,4 +35,4 @@ jobs:
     # Step 4: Run your Python script
     - name: Run METAR Script
       run: |
-        python src\awc_api_mongo_upload.py
+        python src/awc_api_mongo_upload.py
