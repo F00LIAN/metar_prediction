@@ -3,11 +3,17 @@ import requests
 import json
 from datetime import datetime
 
-# MongoDB connection setup
+# MongoDB Atlas connection setup
 try:
-    client = MongoClient('localhost', 27017)
-    db = client['aviation_weather_center']
-    collection = db['metar_reports']
+    # Full connection URI for a replica set
+    client = MongoClient(
+        "mongodb://jasotel1:RhAvV6ROjhjPRTYJ@metar-shard-00-00.wogch.mongodb.net:27017,"
+        "metar-shard-00-01.wogch.mongodb.net:27017,"
+        "metar-shard-00-02.wogch.mongodb.net:27017/"
+        "?ssl=true&replicaSet=atlas-11hv04-shard-0&authSource=admin&retryWrites=true&w=majority"
+    )
+    db = client['aviation_weather_center']  # Database name
+    collection = db['metar_reports']  # Collection name
     print("MongoDB connection successful.")
 except Exception as e:
     print(f"Failed to connect to MongoDB: {e}")
@@ -28,7 +34,7 @@ def get_metar_data():
             # Check if the response is successful
             if response.status_code == 200:
                 try:
-                    metar_data = response.json() #
+                    metar_data = response.json()
 
                     # Check if the response is a list (new format)
                     if isinstance(metar_data, list):
@@ -58,4 +64,4 @@ def get_metar_data():
 
 # The entry point of the script
 if __name__ == "__main__":
-    get_metar_data()        # Initial data collection
+    get_metar_data()
