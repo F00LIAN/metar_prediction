@@ -22,19 +22,6 @@ try:
 
     print("MongoDB connection successful")
 
-    """
-    # Full connection URI for a replica set
-    client = MongoClient(
-        "mongodb://jasotel1:RhAvV6ROjhjPRTYJ@metar-shard-00-00.wogch.mongodb.net:27017,"
-        "metar-shard-00-01.wogch.mongodb.net:27017,"
-        "metar-shard-00-02.wogch.mongodb.net:27017/"
-        "?ssl=true&replicaSet=atlas-11hv04-shard-0&authSource=admin&retryWrites=true&w=majority"
-    )
-    db = client['aviation_weather_center']  # Database name
-    collection = db['metar_reports']  # Collection name
-    print("MongoDB connection successful.")
-    """
-
 except Exception as e:
     print(f"Failed to connect to MongoDB: {e}")
 
