@@ -2,9 +2,27 @@ from pymongo import MongoClient
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # MongoDB Atlas connection setup
 try:
+    CONN_1 = os.getenv("CONN_1")
+    CONN_2 = os.getenv("CONN_2")
+    CONN_3 = os.getenv("CONN_3")
+    CONN_4 = os.getenv("CONN_4")
+
+    connection_uri = f"{CONN_1}{CONN_2}{CONN_3}{CONN_4}"
+
+    client = MongoClient(connection_uri)
+    db = client['aviation_weather_center']
+    collection = db['metar_reports']
+
+    print("MongoDB connection successful")
+
+    """
     # Full connection URI for a replica set
     client = MongoClient(
         "mongodb://jasotel1:RhAvV6ROjhjPRTYJ@metar-shard-00-00.wogch.mongodb.net:27017,"
@@ -15,6 +33,8 @@ try:
     db = client['aviation_weather_center']  # Database name
     collection = db['metar_reports']  # Collection name
     print("MongoDB connection successful.")
+    """
+
 except Exception as e:
     print(f"Failed to connect to MongoDB: {e}")
 
